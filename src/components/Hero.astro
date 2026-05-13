@@ -1,0 +1,183 @@
+---
+import { site } from "../data/site";
+const { business } = site;
+---
+
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <span class="hero__badge">★ {business.rating} · {business.totalFiveStarReviews} five-star reviews · GAF Certified Plus</span>
+      <h1>
+        Knoxville's Most-Trusted Roofer<br/>
+        <span class="hero__accent">Since 2000.</span>
+      </h1>
+      <p class="hero__lede">
+        {business.yearsInBusiness} years installing leak-free roofs across Knox, Blount, Sevier, Anderson, and Loudon counties.
+        Free inspections, written quotes, and a <strong>lifetime no-leak guarantee</strong> on every replacement.
+      </p>
+      <div class="hero__actions">
+        <a href={business.phoneHref} class="btn btn--primary btn--lg">
+          Call {business.phone}
+        </a>
+        <a href="#contact" class="btn btn--ghost btn--lg">Get a free estimate →</a>
+      </div>
+      <ul class="hero__points">
+        <li><span class="hero__check">✓</span> Free 21-point roof inspection</li>
+        <li><span class="hero__check">✓</span> Insurance claim assistance</li>
+        <li><span class="hero__check">✓</span> Same-week installs available</li>
+      </ul>
+    </div>
+    <aside class="hero__card">
+      <span class="hero__card-tag">Free estimate</span>
+      <h3>Get a roof quote in 24 hours</h3>
+      <p>Tell us about your roof. We'll send a free written estimate, usually within one business day.</p>
+      <form class="hero__form" onsubmit="event.preventDefault(); alert('Thanks — we\'ll be in touch within one business day.');">
+        <label class="hero__field">
+          <span>Your name</span>
+          <input type="text" name="name" required placeholder="Jane Doe" />
+        </label>
+        <label class="hero__field">
+          <span>Phone</span>
+          <input type="tel" name="phone" required placeholder="865-555-1234" />
+        </label>
+        <label class="hero__field">
+          <span>What do you need?</span>
+          <select name="service" required>
+            <option value="">Choose a service…</option>
+            <option>Roof replacement</option>
+            <option>Roof repair</option>
+            <option>Storm / insurance claim</option>
+            <option>Metal roof install</option>
+            <option>Free inspection</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center;">Request my free estimate</button>
+        <span class="hero__form-foot">Or call us now: <a href={business.phoneHref}>{business.phone}</a></span>
+      </form>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 80px 0 96px;
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 60% 80% at 20% 0%, rgba(194, 65, 12, 0.18), transparent 60%),
+      radial-gradient(ellipse 80% 100% at 100% 100%, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.65)),
+      linear-gradient(180deg, #0c1322 0%, #1e293b 100%);
+  }
+  .hero__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(135deg, transparent 0%, transparent 49%, rgba(255,255,255,0.03) 49%, rgba(255,255,255,0.03) 51%, transparent 51%);
+    background-size: 40px 40px;
+    opacity: 0.4;
+  }
+  .hero__inner {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  @media (min-width: 980px) {
+    .hero__inner { grid-template-columns: 1.2fr 1fr; gap: 64px; }
+    .hero { padding: 120px 0 132px; }
+  }
+  .hero__content { max-width: 640px; }
+  .hero__badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: #fde68a;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .hero h1 { color: #fff; margin-bottom: 20px; }
+  .hero__accent { color: var(--color-accent); }
+  .hero__lede { color: #cbd5e1; font-size: 19px; max-width: 560px; margin-bottom: 28px; }
+  .hero__lede strong { color: #fff; }
+  .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+  .hero__actions .btn--ghost { color: #fff; border-color: rgba(255,255,255,0.3); background: transparent; }
+  .hero__actions .btn--ghost:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+  .hero__points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    color: #cbd5e1;
+    font-size: 15px;
+  }
+  .hero__check {
+    display: inline-flex;
+    width: 20px; height: 20px;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .hero__card {
+    background: #fff;
+    color: var(--color-ink);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .hero__card-tag {
+    display: inline-block;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-hover);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .hero__card h3 { font-size: 22px; margin-bottom: 8px; }
+  .hero__card p { color: var(--color-ink-muted); font-size: 14px; margin-bottom: 18px; }
+  .hero__form { display: flex; flex-direction: column; gap: 14px; }
+  .hero__field { display: flex; flex-direction: column; gap: 6px; }
+  .hero__field span { font-size: 13px; font-weight: 600; color: var(--color-ink-soft); }
+  .hero__field input, .hero__field select {
+    padding: 12px 14px;
+    border: 1.5px solid var(--color-line-strong);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+  .hero__field input:focus, .hero__field select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-soft);
+  }
+  .hero__form-foot { text-align: center; font-size: 13px; color: var(--color-ink-muted); }
+</style>

@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CTASection from "../components/CTASection.astro";
+import { site } from "../data/site";
+const { areas, business } = site;
+---
+
+<Layout
+  title={`Service Areas | ${business.name} — Knoxville TN Roofing`}
+  description={`Daniel Hood Roofing Systems serves Knox, Blount, Sevier, Anderson, and Loudon counties in East Tennessee. Free inspections. ${business.yearsInBusiness}+ years experience. Call ${business.phone}.`}
+>
+  <section class="page-hero">
+    <div class="container container--narrow">
+      <span class="eyebrow">Where we work</span>
+      <h1>Roofing East Tennessee, county by county.</h1>
+      <p>From downtown Knoxville to the foot of the Smokies, we cover a 50-mile radius with local crews and same-day emergency response.</p>
+      <a href={business.phoneHref} class="btn btn--primary btn--lg">Call {business.phone}</a>
+    </div>
+  </section>
+
+  <section class="areas-page">
+    <div class="container">
+      <div class="areas-page__list">
+        {areas.map((a) => (
+          <article id={a.slug} class="ap">
+            <div class="ap__head">
+              <h2>{a.name}, TN</h2>
+              {a.primary && <span class="ap__tag">Primary coverage</span>}
+            </div>
+            <p class="ap__cities">Cities served: <strong>{a.cities.join(", ")}</strong></p>
+            <p>
+              Daniel Hood Roofing Systems has been replacing, repairing, and inspecting roofs across {a.name} for over {business.yearsInBusiness} years.
+              Whether you're dealing with a leak from last week's storm, hail damage, or a roof that's pushing 25 years, we'll come out and take a look — free of charge, no pressure.
+            </p>
+            <ul class="ap__points">
+              <li>✓ Free 21-point roof inspection with photos</li>
+              <li>✓ Insurance claim assistance and on-site adjuster meetings</li>
+              <li>✓ Local crews — no subcontracting</li>
+              <li>✓ Lifetime no-leak workmanship guarantee</li>
+            </ul>
+            <a href={business.phoneHref} class="ap__cta">Schedule a free inspection in {a.name.replace(' County', '')} →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(ellipse 60% 80% at 20% 0%, rgba(194, 65, 12, 0.18), transparent 60%),
+      linear-gradient(180deg, #0c1322 0%, #1e293b 100%);
+    color: #fff;
+    padding: 96px 0 80px;
+    text-align: center;
+  }
+  .page-hero h1 { color: #fff; margin-bottom: 16px; }
+  .page-hero p { color: #cbd5e1; font-size: 18px; max-width: 640px; margin: 0 auto 28px; }
+
+  .areas-page { background: var(--color-bg); }
+  .areas-page__list { display: flex; flex-direction: column; gap: 24px; max-width: 880px; margin: 0 auto; }
+  .ap {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    scroll-margin-top: 120px;
+  }
+  .ap__head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+  .ap__head h2 { margin: 0; }
+  .ap__tag {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-hover);
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .ap__cities { color: var(--color-ink-soft); font-size: 15px; margin-bottom: 14px; }
+  .ap__cities strong { color: var(--color-primary); }
+  .ap__points {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+    display: grid;
+    gap: 8px;
+    color: var(--color-ink-soft);
+    font-size: 15px;
+  }
+  .ap__cta { color: var(--color-accent); font-weight: 700; }
+</style>

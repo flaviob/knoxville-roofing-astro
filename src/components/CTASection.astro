@@ -1,0 +1,100 @@
+---
+import { site } from "../data/site";
+const { business } = site;
+---
+
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta__card">
+      <div class="cta__content">
+        <span class="eyebrow" style="color: var(--color-accent-soft);">Ready when you are</span>
+        <h2>Free roof inspection. Written quote. No pressure.</h2>
+        <p>
+          Tell us what's going on — leak, storm damage, or just a roof that's hit retirement age.
+          We'll come out, climb up, and put a written, flat-rate quote in your hands. Most quotes back within one business day.
+        </p>
+        <ul class="cta__list">
+          <li>★ {business.rating} stars · {business.totalFiveStarReviews} five-star reviews</li>
+          <li>GAF Certified Plus · BC-21 Licensed · BBB A+</li>
+          <li>Lifetime no-leak guarantee on every replacement</li>
+        </ul>
+      </div>
+      <div class="cta__actions">
+        <a href={business.phoneHref} class="cta__phone">
+          <span class="cta__phone-label">Call Daniel directly</span>
+          <span class="cta__phone-num">{business.phone}</span>
+          <span class="cta__phone-hours">{business.hours}</span>
+        </a>
+        <span class="cta__or">or</span>
+        <a href={`mailto:${business.email}`} class="btn btn--primary btn--lg" style="width:100%; justify-content:center;">
+          Email for a quote →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta { background: var(--color-bg); padding-top: 24px; }
+  .cta__card {
+    background:
+      radial-gradient(ellipse 60% 80% at 0% 0%, rgba(194, 65, 12, 0.22), transparent 60%),
+      linear-gradient(135deg, #0c1322 0%, #1e293b 100%);
+    color: #fff;
+    border-radius: var(--radius-xl);
+    padding: 56px;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 880px) {
+    .cta__card { grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center; }
+  }
+  @media (max-width: 600px) {
+    .cta__card { padding: 36px 28px; }
+  }
+  .cta h2 { color: #fff; margin-bottom: 16px; }
+  .cta__content p { color: #cbd5e1; font-size: 17px; margin-bottom: 20px; }
+  .cta__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #cbd5e1;
+    font-size: 15px;
+  }
+  .cta__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .cta__phone {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #fff;
+    transition: background 140ms ease;
+  }
+  .cta__phone:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .cta__phone-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; font-weight: 700; }
+  .cta__phone-num { font-size: 30px; font-weight: 900; color: #fff; letter-spacing: -0.02em; margin: 4px 0 6px; }
+  .cta__phone-hours { font-size: 13px; color: #94a3b8; }
+  .cta__or {
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+  }
+</style>

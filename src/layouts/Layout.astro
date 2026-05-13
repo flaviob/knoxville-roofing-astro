@@ -1,0 +1,74 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = `${site.business.name} | Knoxville TN Roofing Contractor`,
+  description = `${site.business.name} — Knoxville's GAF Certified Plus roofer. ${site.business.yearsInBusiness} years, lifetime no-leak guarantee. Free roof inspections across Knox, Blount, Sevier, Anderson, and Loudon counties. Call ${site.business.phone}.`,
+  canonical,
+} = Astro.props;
+
+const ogUrl = canonical ?? Astro.url.href;
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  name: site.business.name,
+  telephone: site.business.phone,
+  email: site.business.email,
+  url: `https://${site.business.domain}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.business.city,
+    addressRegion: site.business.regionShort,
+    addressCountry: "US",
+  },
+  areaServed: site.areas.map(a => ({ "@type": "AdministrativeArea", name: `${a.name}, TN` })),
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: site.business.rating,
+    reviewCount: site.business.ratingGafReviews,
+  },
+  openingHours: "Mo-Su 08:00-20:00",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to main content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,194 @@
+---
+import { site } from "../data/site";
+const { business, nav } = site;
+---
+
+<header class="header">
+  <div class="header__top">
+    <div class="container header__top-inner">
+      <span class="header__top-item">★ {business.rating} · {business.totalFiveStarReviews} five-star reviews</span>
+      <span class="header__top-sep" aria-hidden="true">·</span>
+      <span class="header__top-item">{business.license}</span>
+      <span class="header__top-sep" aria-hidden="true">·</span>
+      <span class="header__top-item">{business.hours}</span>
+    </div>
+  </div>
+  <div class="container header__inner">
+    <a href="/" class="brand" aria-label={business.name}>
+      <span class="brand__mark" aria-hidden="true">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <path d="M4 18 L18 5 L32 18 L28 18 L28 30 L8 30 L8 18 Z" fill="currentColor"/>
+          <path d="M14 30 L14 22 L22 22 L22 30" stroke="#fff" stroke-width="2" fill="none"/>
+        </svg>
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">Daniel Hood</span>
+        <span class="brand__sub">Roofing Systems</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      {nav.map((item) => (
+        <a href={item.href} class="nav__link">{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="header__cta">
+      <a href={business.phoneHref} class="header__phone">
+        <span class="header__phone-label">Call now</span>
+        <span class="header__phone-num">{business.phone}</span>
+      </a>
+      <a href="#contact" class="btn btn--primary">Free Estimate</a>
+    </div>
+
+    <button class="hamburger" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <div class="container">
+      {nav.map((item) => (
+        <a href={item.href} class="mobile-menu__link">{item.label}</a>
+      ))}
+      <a href={business.phoneHref} class="btn btn--primary btn--lg" style="width:100%; justify-content:center; margin-top:12px;">
+        Call {business.phone}
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-line);
+    backdrop-filter: saturate(180%) blur(8px);
+  }
+  .header__top {
+    background: var(--color-primary);
+    color: #cbd5e1;
+    font-size: 13px;
+  }
+  .header__top-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 8px 24px;
+    flex-wrap: wrap;
+  }
+  .header__top-item { white-space: nowrap; }
+  .header__top-sep { color: #475569; }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 14px 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 800;
+  }
+  .brand__mark {
+    display: inline-flex;
+    color: var(--color-accent);
+  }
+  .brand__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+  }
+  .brand__name { font-size: 18px; letter-spacing: -0.01em; }
+  .brand__sub { font-size: 12px; color: var(--color-ink-muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav {
+    display: none;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav__link {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .nav__link:hover { color: var(--color-accent); }
+  .header__cta {
+    display: none;
+    align-items: center;
+    gap: 16px;
+  }
+  .header__phone {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .header__phone-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-ink-muted); font-weight: 700; }
+  .header__phone-num { font-size: 19px; font-weight: 800; }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 2px;
+  }
+  .mobile-menu {
+    border-top: 1px solid var(--color-line);
+    padding: 16px 0 24px;
+    background: var(--color-surface);
+  }
+  .mobile-menu__link {
+    display: block;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-line);
+  }
+  @media (min-width: 960px) {
+    .nav, .header__cta { display: flex; }
+    .hamburger { display: none; }
+    .mobile-menu { display: none !important; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById("menuToggle");
+  const menu = document.getElementById("mobileMenu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      const open = menu.hasAttribute("hidden") ? false : true;
+      if (open) {
+        menu.setAttribute("hidden", "");
+        toggle.setAttribute("aria-expanded", "false");
+      } else {
+        menu.removeAttribute("hidden");
+        toggle.setAttribute("aria-expanded", "true");
+      }
+    });
+  }
+</script>

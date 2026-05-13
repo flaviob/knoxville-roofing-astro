@@ -1,0 +1,121 @@
+---
+import { site } from "../data/site";
+const { business } = site;
+---
+
+<section class="about" id="about">
+  <div class="container about__inner">
+    <div class="about__media" aria-hidden="true">
+      <div class="about__photo">
+        <span class="about__initials">DH</span>
+      </div>
+      <div class="about__badge">
+        <strong>{business.yearsInBusiness}</strong>
+        <span>Years roofing East TN</span>
+      </div>
+    </div>
+    <div class="about__content">
+      <span class="eyebrow">Meet the owner</span>
+      <h2>Daniel Hood — your neighbor with a tool belt.</h2>
+      <p>
+        Daniel started roofing in East Tennessee in 2000. Two-plus decades later, he still walks every job site, meets every homeowner, and signs his name on every estimate. That's why folks across Knox and Blount keep calling back when their neighbors need a roof too.
+      </p>
+      <p>
+        We're a small, owner-led crew — not a 1-800 storm-chaser. That means honest quotes, real workmanship, and a phone number that goes to a human who knows your name.
+      </p>
+      <ul class="about__list">
+        <li><strong>GAF Certified Plus</strong> — top 3% of roofers in the U.S.</li>
+        <li><strong>BC-21 Tennessee state license</strong> — fully insured</li>
+        <li><strong>Cityview Best of the Best 2024</strong></li>
+        <li><strong>Lifetime no-leak workmanship guarantee</strong> on every replacement</li>
+      </ul>
+      <div class="about__cta">
+        <a href={business.phoneHref} class="btn btn--dark">Call Daniel directly · {business.phone}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about { background: var(--color-surface); }
+  .about__inner {
+    display: grid;
+    gap: 56px;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  @media (min-width: 880px) {
+    .about__inner { grid-template-columns: 1fr 1.2fr; }
+  }
+  .about__media {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .about__photo {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-xl);
+    background:
+      radial-gradient(ellipse at top, rgba(194, 65, 12, 0.18), transparent 60%),
+      linear-gradient(135deg, #1e293b 0%, #0c1322 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.18);
+    font-size: 120px;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    box-shadow: var(--shadow-lg);
+  }
+  .about__badge {
+    position: absolute;
+    bottom: -20px;
+    right: 10%;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: 16px 22px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+  .about__badge strong {
+    display: block;
+    font-size: 36px;
+    color: var(--color-accent);
+    font-weight: 900;
+    line-height: 1;
+  }
+  .about__badge span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-muted);
+    font-weight: 700;
+    margin-top: 4px;
+  }
+  .about__list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .about__list li {
+    padding-left: 28px;
+    position: relative;
+    color: var(--color-ink-soft);
+  }
+  .about__list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-accent);
+    font-weight: 800;
+  }
+  .about__list strong { color: var(--color-primary); }
+</style>

@@ -1,0 +1,162 @@
+---
+import { site } from "../data/site";
+const { business, services, areas } = site;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__col footer__col--brand">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 36 36" fill="none">
+            <path d="M4 18 L18 5 L32 18 L28 18 L28 30 L8 30 L8 18 Z" fill="currentColor"/>
+            <path d="M14 30 L14 22 L22 22 L22 30" stroke="#0c1322" stroke-width="2" fill="none"/>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">Daniel Hood</span>
+          <span class="brand__sub">Roofing Systems</span>
+        </span>
+      </div>
+      <p class="footer__about">
+        Knoxville's GAF Certified Plus roofer for {business.yearsInBusiness}+ years. Lifetime no-leak workmanship guarantee on every install.
+      </p>
+      <a href={business.phoneHref} class="footer__phone">
+        <span class="footer__phone-label">Call now · {business.hours.split('·')[0].trim()}</span>
+        <span class="footer__phone-num">{business.phone}</span>
+      </a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Services</h4>
+      <ul>
+        {services.map((s) => (
+          <li><a href={`/services/#${s.slug}`}>{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Service Areas</h4>
+      <ul>
+        {areas.map((a) => (
+          <li><a href={`/areas/#${a.slug}`}>{a.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/#about">About Daniel</a></li>
+        <li><a href="/#reviews">Reviews</a></li>
+        <li><a href="/#process">Our Process</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="/#contact">Free Estimate</a></li>
+      </ul>
+      <div class="footer__badges">
+        <span class="footer__badge">GAF Certified Plus</span>
+        <span class="footer__badge">BBB · A+</span>
+        <span class="footer__badge">BC-21 Licensed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>© {year} {business.name}. All rights reserved.</span>
+      <span>{business.city}, {business.regionShort} · {business.license}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-primary);
+    color: #cbd5e1;
+    padding: 72px 0 0;
+    margin-top: 80px;
+  }
+  .footer__inner {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .footer__inner { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 56px; }
+  }
+  .footer__col h4 {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+  .footer__col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+  }
+  .footer__col li { margin-bottom: 10px; }
+  .footer__col a {
+    color: #cbd5e1;
+    font-size: 15px;
+    text-decoration: none;
+  }
+  .footer__col a:hover { color: #fff; }
+
+  .footer__col--brand .brand { color: #fff; margin-bottom: 16px; }
+  .footer__col--brand .brand__mark { color: var(--color-accent); }
+  .footer__col--brand .brand__name { color: #fff; font-size: 20px; }
+  .footer__col--brand .brand__sub { color: #94a3b8; }
+
+  .footer__about {
+    color: #94a3b8;
+    font-size: 15px;
+    max-width: 320px;
+    margin-bottom: 20px;
+  }
+  .footer__phone {
+    display: inline-flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: #fff;
+  }
+  .footer__phone-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #94a3b8; }
+  .footer__phone-num { font-size: 22px; font-weight: 800; color: #fff; }
+
+  .footer__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer__badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px;
+    color: #cbd5e1;
+  }
+
+  .footer__bottom {
+    margin-top: 56px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+    color: #94a3b8;
+  }
+  .footer__bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>

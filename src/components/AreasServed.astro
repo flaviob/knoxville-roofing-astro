@@ -1,0 +1,99 @@
+---
+import { site } from "../data/site";
+const primary = site.areas.filter((a) => a.primary);
+const secondary = site.areas.filter((a) => !a.primary);
+---
+
+<section class="areas" id="areas">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Where we work</span>
+      <h2>Serving Knoxville and the East Tennessee region</h2>
+      <p>Local crews, local dispatch, local emergency response. We don't subcontract — every job is handled by Daniel Hood Roofing Systems.</p>
+    </div>
+
+    <div class="grid grid--3 areas__grid">
+      {primary.map((a) => (
+        <a href={`/areas/#${a.slug}`} class="area card">
+          <div class="area__head">
+            <h3>{a.name}</h3>
+            <span class="area__tag">Primary</span>
+          </div>
+          <p class="area__cities">{a.cities.join(" · ")}</p>
+          <span class="area__cta">View coverage →</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="areas__more">
+      <span>Also serving:</span>
+      {secondary.map((a) => (
+        <a href={`/areas/#${a.slug}`} class="areas__pill">{a.name} · {a.cities[0]}</a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .areas { background: var(--color-surface-alt); }
+  .area {
+    text-decoration: none;
+    color: var(--color-ink);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .area__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .area__head h3 { margin: 0; }
+  .area__tag {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-hover);
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .area__cities {
+    color: var(--color-ink-muted);
+    font-size: 14px;
+    margin: 0 0 12px;
+  }
+  .area__cta {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .areas__more {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .areas__more > span {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-muted);
+    margin-bottom: 12px;
+  }
+  .areas__pill {
+    display: inline-block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink);
+    text-decoration: none;
+    margin: 4px;
+  }
+  .areas__pill:hover { border-color: var(--color-accent); color: var(--color-accent); }
+</style>

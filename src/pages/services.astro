@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CTASection from "../components/CTASection.astro";
+import { site } from "../data/site";
+const { services, business } = site;
+---
+
+<Layout
+  title={`Roofing Services in Knoxville, TN | ${business.name}`}
+  description={`Full-service roofing in Knoxville: roof replacement, repair, metal roofing, emergency tarp service, gutters, and more. GAF Certified Plus. Free inspections. Call ${business.phone}.`}
+>
+  <section class="page-hero">
+    <div class="container container--narrow">
+      <span class="eyebrow">Roofing services</span>
+      <h1>Everything we do — under one roof.</h1>
+      <p>Residential and light commercial roofing across Knox, Blount, Sevier, Anderson, and Loudon counties. {business.yearsInBusiness} years experience, GAF Certified Plus, lifetime no-leak guarantee on every replacement.</p>
+      <a href={business.phoneHref} class="btn btn--primary btn--lg">Call {business.phone}</a>
+    </div>
+  </section>
+
+  <section class="services-page">
+    <div class="container">
+      <div class="services-page__list">
+        {services.map((s) => (
+          <article id={s.slug} class="svc">
+            <div class="svc__head">
+              <h2>{s.name}</h2>
+              {s.featured && <span class="svc__tag">Most requested</span>}
+            </div>
+            <p class="svc__blurb">{s.blurb}</p>
+            <ul class="svc__points">
+              <li>✓ Free written estimate after on-site inspection</li>
+              <li>✓ Property-protected install — landscaping, AC, and gutters guarded</li>
+              <li>✓ Manufacturer-backed materials warranty</li>
+              <li>✓ Lifetime no-leak workmanship guarantee on replacements</li>
+            </ul>
+            <a href={business.phoneHref} class="svc__cta">Get a quote for {s.name.toLowerCase()} →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(ellipse 60% 80% at 20% 0%, rgba(194, 65, 12, 0.18), transparent 60%),
+      linear-gradient(180deg, #0c1322 0%, #1e293b 100%);
+    color: #fff;
+    padding: 96px 0 80px;
+    text-align: center;
+  }
+  .page-hero h1 { color: #fff; margin-bottom: 16px; }
+  .page-hero p { color: #cbd5e1; font-size: 18px; max-width: 640px; margin: 0 auto 28px; }
+
+  .services-page { background: var(--color-bg); }
+  .services-page__list { display: flex; flex-direction: column; gap: 24px; max-width: 880px; margin: 0 auto; }
+  .svc {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    scroll-margin-top: 120px;
+  }
+  .svc__head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+  .svc__head h2 { margin: 0; font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+  .svc__tag {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-hover);
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .svc__blurb { font-size: 17px; color: var(--color-ink-soft); margin-bottom: 18px; }
+  .svc__points {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+    display: grid;
+    gap: 8px;
+    color: var(--color-ink-soft);
+    font-size: 15px;
+  }
+  .svc__cta { color: var(--color-accent); font-weight: 700; }
+</style>

@@ -1,0 +1,79 @@
+---
+import { site } from "../data/site";
+const { reviews, business } = site;
+---
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What Knoxville is saying</span>
+      <h2>{business.totalFiveStarReviews} five-star reviews. And counting.</h2>
+      <p>Real homeowners across Knox, Blount, and Sevier counties. We earn every review — and every referral.</p>
+    </div>
+
+    <div class="grid grid--2 reviews__grid">
+      {reviews.map((r) => (
+        <article class="review card">
+          <div class="review__stars">
+            {Array.from({ length: r.stars }).map(() => <span class="stars">★</span>)}
+          </div>
+          <p class="review__text">"{r.text}"</p>
+          <footer class="review__foot">
+            <span class="review__avatar">{r.name.charAt(0)}</span>
+            <div>
+              <strong>{r.name}</strong>
+              <span>{r.area} · {r.timeAgo}</span>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="#contact" class="btn btn--ghost">See more reviews on Google →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews { background: var(--color-bg); }
+  .review { display: flex; flex-direction: column; gap: 16px; }
+  .review__stars { font-size: 18px; letter-spacing: 2px; }
+  .review__text {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--color-ink);
+    margin: 0;
+    flex: 1;
+  }
+  .review__foot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--color-line);
+    padding-top: 16px;
+    margin-top: 4px;
+  }
+  .review__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .review__foot strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: 15px;
+  }
+  .review__foot span {
+    display: block;
+    color: var(--color-ink-muted);
+    font-size: 13px;
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import { site } from "../data/site";
+const { trustBadges, business } = site;
+---
+
+<section class="trustbar">
+  <div class="container">
+    <div class="trustbar__inner">
+      <span class="trustbar__lead">Trusted across East Tennessee:</span>
+      {trustBadges.map((b) => (
+        <div class="trustbar__item">
+          <strong>{b.label}</strong>
+          <span>{b.sub}</span>
+        </div>
+      ))}
+      <div class="trustbar__item trustbar__item--phone">
+        <strong>{business.phone}</strong>
+        <span>Mon–Sun · 8 AM – 8 PM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trustbar {
+    padding: 24px 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .trustbar__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 36px;
+    justify-content: center;
+  }
+  .trustbar__lead {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .trustbar__item {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .trustbar__item strong {
+    font-size: 15px;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  .trustbar__item span {
+    font-size: 12px;
+    color: var(--color-ink-muted);
+    margin-top: 2px;
+  }
+  .trustbar__item--phone strong {
+    color: var(--color-accent);
+    font-size: 17px;
+  }
+</style>
