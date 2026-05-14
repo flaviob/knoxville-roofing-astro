@@ -17,11 +17,15 @@ const { business } = site;
     <div class="about__content">
       <span class="eyebrow">Meet the owner</span>
       <h2>Daniel Hood — your neighbor with a tool belt.</h2>
+      <blockquote class="about__quote">
+        "{business.ownerQuote.text}"
+        <cite>— {business.ownerQuote.attribution}</cite>
+      </blockquote>
       <p>
         Daniel started roofing in East Tennessee in 2000. Two-plus decades later, he still walks every job site, meets every homeowner, and signs his name on every estimate. That's why folks across Knox and Blount keep calling back when their neighbors need a roof too.
       </p>
       <p>
-        We're a small, owner-led crew — not a 1-800 storm-chaser. That means honest quotes, real workmanship, and a phone number that goes to a human who knows your name.
+        We're a small, owner-led crew based at <strong>{business.addressShort}</strong> — not a 1-800 storm-chaser. That means honest quotes, real workmanship, and a phone number that goes to a human who knows your name. The human touch. We look after our customers because <em>you matter</em>.
       </p>
       <ul class="about__list">
         <li><strong>GAF Certified Plus</strong> — top 3% of roofers in the U.S.</li>
@@ -118,4 +122,24 @@ const { business } = site;
     font-weight: 800;
   }
   .about__list strong { color: var(--color-primary); }
+
+  .about__quote {
+    border-left: 4px solid var(--color-accent);
+    padding: 4px 0 4px 20px;
+    margin: 0 0 22px;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--color-primary);
+    line-height: 1.5;
+  }
+  .about__quote cite {
+    display: block;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-top: 10px;
+  }
 </style>

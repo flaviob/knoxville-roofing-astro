@@ -22,6 +22,9 @@ const year = new Date().getFullYear();
       <p class="footer__about">
         Knoxville's GAF Certified Plus roofer for {business.yearsInBusiness}+ years. Lifetime no-leak workmanship guarantee on every install.
       </p>
+      <address class="footer__address">
+        {business.address}
+      </address>
       <a href={business.phoneHref} class="footer__phone">
         <span class="footer__phone-label">Call now · {business.hours.split('·')[0].trim()}</span>
         <span class="footer__phone-num">{business.phone}</span>
@@ -115,7 +118,14 @@ const year = new Date().getFullYear();
     color: #94a3b8;
     font-size: 15px;
     max-width: 320px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+  }
+  .footer__address {
+    font-style: normal;
+    color: #cbd5e1;
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 1.4;
   }
   .footer__phone {
     display: inline-flex;

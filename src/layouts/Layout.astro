@@ -26,8 +26,10 @@ const businessSchema = {
   url: `https://${site.business.domain}`,
   address: {
     "@type": "PostalAddress",
+    streetAddress: "1924 Laurans Ave",
     addressLocality: site.business.city,
     addressRegion: site.business.regionShort,
+    postalCode: "37915",
     addressCountry: "US",
   },
   areaServed: site.areas.map(a => ({ "@type": "AdministrativeArea", name: `${a.name}, TN` })),
